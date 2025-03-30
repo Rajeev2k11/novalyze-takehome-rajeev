@@ -37,6 +37,7 @@ const Login: React.FC = () => {
     const {name,value} = e.target
     setLoginForm(prev=> ({...prev,[name]:value}))
   },[])
+  
 
   const handleCreateAccount =()=>{
     navigate("/signup")
@@ -84,8 +85,8 @@ const Login: React.FC = () => {
           <>
             <h2 className="text-2xl font-bold">Welcome Back</h2>
             <p className="mt-2 text-gray-600">Login to access your account</p>
-
-            <form className="mt-6" noValidate onClick={handleLogin}>
+            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+            <form className="mt-6" noValidate onSubmit={(e)=>handleLogin(e)}>
               <div className="mb-4">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                 <input id="email" name="email" type="email" placeholder="Enter your email" value={loginForm.email} required aria-required="true" onChange={handleLoginInput}
