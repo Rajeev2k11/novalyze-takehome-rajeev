@@ -38,7 +38,8 @@ const Login: React.FC = () => {
     setLoginForm(prev=> ({...prev,[name]:value}))
   },[])
   
-
+  const allusers= localStorage.getItem("users")
+  console.log(allusers)
   const handleCreateAccount =()=>{
     navigate("/signup")
   }
@@ -65,11 +66,14 @@ const Login: React.FC = () => {
   }
   const handleLogin =(e :React.FormEvent)=>{
     e.preventDefault();
-    const user = dummyUsers.find(
-      (u) => u.email === loginForm.email && u.password === loginForm.password
+    const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
+    const allUsers = [...storedUsers, ...dummyUsers];
+    const user = allUsers.find(
+      (u: { email: string; password: string }) => u.email === loginForm.email && u.password === loginForm.password
     );
     if (user) {
       localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("currentUser", JSON.stringify(user));
       navigate("/");
     } else {
       setErrorMessage("Invalid email or password");
