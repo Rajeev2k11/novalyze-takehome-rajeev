@@ -7,6 +7,7 @@ import Logo from '../img/logo.png'
 
 export default function Header() {
   const isAuthenticated = localStorage.getItem("isAuthenticated")
+  
 
   return (
     <header className="bg-black">
@@ -33,6 +34,7 @@ export default function Header() {
             Company
           </a>
         </PopoverGroup>
+        
         {!isAuthenticated ?<div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="/login" className="text-sm/6 font-semibold text-secondary">
             Log in <span aria-hidden="true">&rarr;</span>

@@ -31,10 +31,9 @@ const Signup: React.FC = () => {
       return;
     }
 
-    // Retrieve existing users from localStorage
+
     const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
 
-    // Check if the user already exists
     const userExists = existingUsers.some((user: any) => user.email === email);
     if (userExists) {
       setErrorMessage("User already exists! Try logging in.");
@@ -52,8 +51,8 @@ const Signup: React.FC = () => {
   return (
     <>
       <Header />
-      <div className="flex h-screen items-center justify-center bg-gray-100">
-        <div className="max-w-md rounded-xl bg-white p-6 shadow-lg">
+      <div className="flex h-screen items-center justify-center bg-gray-background-dark">
+        <div className="max-w-md rounded-xl bg-white p-6 px-12 shadow-lg">
           <h2 className="text-2xl font-bold">Create Account</h2>
           <p className="mt-2 text-gray-600">Sign up to get started</p>
           {errorMessage && <p className="text-red-500">{errorMessage}</p>}
